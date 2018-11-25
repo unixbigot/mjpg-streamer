@@ -37,10 +37,13 @@ struct extractor_state {
     
     char * port;
     char * hostname;
+    char * uri;
+    int interval;
 
     // this is current result
     char buffer [BUFFER_SIZE];
     int length;
+    int header_contentlength;
 
     // this is inner state of a parser
 

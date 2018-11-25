@@ -20,17 +20,17 @@
 
 
 // dumb 4 byte storing to detect double CRLF
-int is_crlf(int bytes) {
-    int result = (((13 << 8) | (10)) & bytes) == ((13 << 8) | (10));
+int is_crlf(uint32_t bytes) {
+    int result = (bytes & 0xFFFF) == ((13 << 8) | (10));
     return result ;
 }
 
-int is_crlfcrlf(int bytes) {
+int is_crlfcrlf(uint32_t bytes) {
     int result = is_crlf(bytes) && is_crlf(bytes >> 16);
     return result;
 
 }
-void push_byte(int * bytes, char byte) {
+void push_byte(uint32_t * bytes, char byte) {
     * bytes = ((* bytes) << 8) | byte ;
 }
 
